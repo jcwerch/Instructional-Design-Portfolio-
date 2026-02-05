@@ -5,131 +5,326 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Jason Werch | Instructional Design Portfolio</title>
   <style>
-    :root {
-      --teal: #0f766e;
-      --teal-dark: #0b5f59;
-      --text: #0f172a;
-      --muted: #475569;
-      --border: rgba(255,255,255,.22);
-      --card-border: rgba(15,23,42,.10);
-      --card-bg: #ffffff;
-      --link: #0b57d0;
+    :root{
+      --bg:#f6f7f9;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:rgba(15,23,42,.10);
+      --shadow:0 10px 28px rgba(2,6,23,.10);
+      --teal:#0f766e;
+      --teal-dark:#0b5f59;
+      --link:#0b57d0;
+      --radius:16px;
     }
-    body {
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
       font-family: Arial, sans-serif;
-      margin: 0;
-      color: var(--text);
-      background: var(--teal);
+      color:var(--text);
+      background:var(--bg);
     }
-    .wrap {
-      max-width: 900px;
+
+    .wrap{
+      max-width: 980px;
       margin: 0 auto;
-      padding: 28px 18px;
+      padding: 28px 18px 42px;
     }
-    header {
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, var(--teal) 0%, var(--teal-dark) 100%);
+
+    /* HERO */
+    .hero{
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+      color:#fff;
+      border-radius: calc(var(--radius) + 6px);
+      padding: 26px 22px;
+      box-shadow: var(--shadow);
     }
-    header h1 { margin: 0 0 6px; color: #fff; }
-    header .tag { margin: 0; color: rgba(255,255,255,.88); line-height: 1.45; }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
+    .hero h1{
+      margin:0 0 8px;
+      font-size: 28px;
+      letter-spacing: .2px;
+    }
+    .hero p{
+      margin:0;
+      color: rgba(255,255,255,.90);
+      line-height: 1.45;
+      max-width: 72ch;
+    }
+    .hero .row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 16px;
+    }
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      border:1px solid rgba(255,255,255,.28);
+      color:#fff;
+      background: rgba(255,255,255,.10);
+    }
+    .btn:hover{ background: rgba(255,255,255,.16); }
+
+    .btn-primary{
+      background:#ffffff;
+      color: var(--teal-dark);
+      border-color: #ffffff;
+    }
+    .btn-primary:hover{ background: rgba(255,255,255,.92); }
+
+    /* SECTIONS */
+    .section-title{
+      margin: 22px 0 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 16px;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hint{
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* GRID + CARDS */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 820px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow:hidden;
+    }
+    .card-inner{
       padding: 16px;
-      margin-top: 14px;
-      box-shadow: 0 6px 22px rgba(0,0,0,.10);
     }
-    .meta { color: var(--muted); margin: 6px 0 10px; font-size: 14px; }
-    a { color: var(--link); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .pill {
+    .accent{
+      height: 6px;
+      background: linear-gradient(90deg, var(--teal), #22c55e);
+    }
+    .card h3{
+      margin:0 0 6px;
+      font-size: 17px;
+    }
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin: 8px 0 10px;
+    }
+    .pill{
       display:inline-block;
       padding:3px 10px;
       border:1px solid rgba(15,23,42,.12);
       border-radius:999px;
       font-size:12px;
-      margin-right:6px;
       background:#f8fafc;
       color:#0f172a;
     }
+    .desc{
+      margin: 0 0 10px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .action{
+      display:inline-block;
+      padding:9px 12px;
+      border-radius: 10px;
+      text-decoration:none;
+      font-weight:700;
+      font-size: 13px;
+      border:1px solid rgba(15,23,42,.12);
+      color: var(--teal-dark);
+      background: #ffffff;
+    }
+    .action:hover{
+      background:#f1f5f9;
+    }
+    .action.secondary{
+      color: var(--link);
+    }
+
+    /* OPTIONAL THUMBNAILS (leave empty for now) */
+    .thumb{
+      width:100%;
+      height:140px;
+      background: linear-gradient(120deg, rgba(15,118,110,.18), rgba(34,197,94,.14));
+      border-bottom: 1px solid var(--border);
+    }
+    .thumb-note{
+      font-size:12px;
+      color: rgba(15,23,42,.55);
+      padding: 10px 16px 0;
+    }
+
+    /* CONTACT */
+    .contact{
+      margin-top: 16px;
+      padding: 16px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .contact a{ color: var(--link); text-decoration:none; }
+    .contact a:hover{ text-decoration: underline; }
+    .contact .line{ color: var(--muted); line-height: 1.6; }
   </style>
 </head>
+
 <body>
-
-<header>
   <div class="wrap">
-    <h1>Jason Werch — Instructional Design Portfolio</h1>
-    <p class="tag">
-      Sample work in Rise 360 and Storyline 360.
-      <br/>
-    </p>
-  </div>
-</header>
 
-<main class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <h1>Jason Werch — Instructional Design Portfolio</h1>
+      <p>
+        Sample work in Rise 360 and Storyline 360. 
+      </p>
 
-  <div class="card">
-    <h2 style="margin:0 0 6px;">1) “Pre-Implementation Steps” Readiness Micro-Module</h2>
-    <div class="meta">
-      <span class="pill">Rise 360</span><span class="pill">Onboarding</span><span class="pill">Job aid</span>
+      <div class="row">
+        <a class="btn btn-primary" href="#projects">View projects</a>
+        <a class="btn" href="healthy-lifestyles-workbook-high-school.pdf" target="_blank" rel="noreferrer">View workbook sample (PDF)</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <div class="section-title" id="projects">
+      <h2>Selected work</h2>
+      <div class="hint">2-column layout on desktop · buttons for key actions</div>
     </div>
-    <p style="margin:0 0 10px;">
-      A 5–10 minute readiness micro-module for Prevention Plus Wellness InShape prevention program implementers with checklist steps, common errors, and knowledge checks.
-    </p>
-    <p style="margin:0;">
-      <a href="https://inshape-implementer-training.netlify.app" target="_blank" rel="noreferrer">Launch module</a>
-    </p>
+
+    <section class="grid">
+      <!-- Card 1 -->
+      <article class="card">
+        <div class="accent"></div>
+
+        <!-- Optional thumbnail placeholder -->
+        <div class="thumb"></div>
+        <div class="thumb-note">Optional: add a screenshot thumbnail later</div>
+
+        <div class="card-inner">
+          <h3>1) “Pre-Implementation Steps” Readiness Micro-Module</h3>
+          <div class="meta">
+            <span class="pill">Rise 360</span>
+            <span class="pill">Onboarding</span>
+            <span class="pill">Job aid</span>
+          </div>
+          <p class="desc">
+            A 5–10 minute readiness micro-module for new implementers with checklist steps, common errors, and knowledge checks.
+          </p>
+          <div class="actions">
+            <a class="action" href="https://inshape-implementer-training.netlify.app" target="_blank" rel="noreferrer">Launch module</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card">
+        <div class="accent"></div>
+        <div class="thumb"></div>
+        <div class="thumb-note">Optional: add a screenshot thumbnail later</div>
+
+        <div class="card-inner">
+          <h3>2) Branching Scenario: Health Screening → Personalized Feedback</h3>
+          <div class="meta">
+            <span class="pill">Storyline 360</span>
+            <span class="pill">Branching</span>
+            <span class="pill">Feedback</span>
+          </div>
+          <p class="desc">
+            A branching interaction that adapts learner feedback based on responses to a health screening.
+          </p>
+          <div class="actions">
+            <a class="action" href="https://sportppw.netlify.app/story.html" target="_blank" rel="noreferrer">Launch scenario</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card">
+        <div class="accent"></div>
+        <div class="thumb"></div>
+        <div class="thumb-note">Optional: add a screenshot thumbnail later</div>
+
+        <div class="card-inner">
+          <h3>3) Economics Mini-Lesson: Inflation &amp; Interest Rates (FRED Analysis + Policy)</h3>
+          <div class="meta">
+            <span class="pill">Rise 360</span>
+            <span class="pill">Data literacy</span>
+            <span class="pill">Canvas</span>
+          </div>
+          <p class="desc">
+            A 20–25 minute mini-lesson that refreshes monetary policy concepts, guides students through FRED charts,
+            and culminates in a policy recommendation.
+          </p>
+          <div class="actions">
+            <a class="action secondary" href="https://inflationvsinterestrates.netlify.app" target="_blank" rel="noreferrer">Launch lesson</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 (Workbook as its own section/card) -->
+      <article class="card">
+        <div class="accent"></div>
+        <div class="thumb"></div>
+        <div class="thumb-note">Optional: add a cover thumbnail later</div>
+
+        <div class="card-inner">
+          <h3>4) Workbook Design Sample: Healthy Lifestyles (High School)</h3>
+          <div class="meta">
+            <span class="pill">Canva</span>
+            <span class="pill">Workbook</span>
+            <span class="pill">Engagement</span>
+          </div>
+          <p class="desc">
+            Student-facing workbook designed in Canva to support fun, engaging, and print-friendly activities (layout, pacing, visual hierarchy).
+          </p>
+          <div class="actions">
+            <a class="action" href="healthy-lifestyles-workbook-high-school.pdf" target="_blank" rel="noreferrer">View workbook (PDF)</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="section-title" style="margin-top:0;">
+        <h2>Contact</h2>
+        <div class="hint"><a href="#top">Back to top</a></div>
+      </div>
+      <div class="line">
+        Email: <a href="mailto:j.c.werch@gmail.com">j.c.werch@gmail.com</a><br/>
+        LinkedIn: <a href="https://www.linkedin.com/in/jason-werch-93a65540/" target="_blank" rel="noreferrer">linkedin.com/in/jason-werch-93a65540</a>
+      </div>
+    </section>
+
   </div>
-
-  <div class="card">
-    <h2 style="margin:0 0 6px;">2) Branching Scenario: Health Screening Questions → Personalized Feedback Videos</h2>
-    <div class="meta">
-      <span class="pill">Storyline 360</span><span class="pill">Branching</span><span class="pill">Feedback</span>
-    </div>
-    <p style="margin:0 0 10px;">
-      A branching interaction that adapts learner feedback based on responses to a health screening.
-    </p>
-    <p style="margin:0;">
-      <a href="https://sportppw.netlify.app/story.html" target="_blank" rel="noreferrer">Launch scenario</a>
-    </p>
-  </div>
-
-  <div class="card">
-    <h2 style="margin:0 0 6px;">3) Economics Mini-Lesson: Inflation &amp; Interest Rates (FRED Analysis + Policy)</h2>
-    <div class="meta">
-      <span class="pill">Rise 360</span><span class="pill">Data literacy</span><span class="pill">Canvas</span>
-    </div>
-    <p style="margin:0 0 10px;">
-      A 30-40 minute mini-lesson that refreshes monetary policy concepts, guides students through FRED charts, and culminates in a policy recommendation.
-    </p>
-    <p style="margin:0;">
-      <a href="https://inflationvsinterestrates.netlify.app" target="_blank" rel="noreferrer">Launch lesson</a>
-    </p>
-  </div>
-
-  <div class="card">
-    <h2 style="margin:0 0 6px;">4) Workbook Design Sample: Healthy Lifestyles (High School)</h2>
-    <div class="meta">
-      <span class="pill">Canva</span><span class="pill">Workbook</span><span class="pill">Engagement</span>
-    </div>
-    <p style="margin:0 0 10px;">
-      A student-facing workbook designed in Canva to support fun, engaging, and print-friendly activities.
-    </p>
-    <p style="margin:0;">
-      <a href="healthy-lifestyles-workbook-high-school.pdf" target="_blank" rel="noreferrer">View workbook (PDF)</a>
-    </p>
-  </div>
-
-  <div class="card">
-    <h2 style="margin:0 0 6px;">Contact</h2>
-    <p style="margin:0;">
-      Email: <a href="mailto:j.c.werch@gmail.com">j.c.werch@gmail.com</a><br/>
-      LinkedIn: <a href="https://www.linkedin.com/in/jason-werch-93a65540/" target="_blank" rel="noreferrer">linkedin.com/in/jason-werch-93a65540</a>
-    </p>
-  </div>
-
-</main>
-
 </body>
 </html>
